@@ -38,6 +38,7 @@ t2 = Test()
 print(id(t2))
 
 # 方法二, 利用重写类的__new__方法
+# object是所有类的基类
 
 
 class Singleton(object):
@@ -65,6 +66,9 @@ print(id(t1))
 print(id(t2))
 
 # 利用元类实现单例 下述例子需要在py2的环境下运行
+# 元类是创建类的类, 当指定一个类的元类的时候, 在文件加载的时候会调用元类的__init__方法来创建这个类
+# 而当我们用cls()来创建实例的时候,其实等同于metaclass(name, bases, attrs)(), 调用元类的__call__方法,
+# 所以我们可以利用这个原理来执行cls的__init__之前来做点什么, __call__执行的过程中会执行cls的__new__,其次cls的__init__,借此来实现单例模式
 
 
 class Singleton1(type):
