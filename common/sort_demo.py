@@ -41,7 +41,24 @@ print bubble_sort([2, 1, 5, 7, 6, 9])
 
 
 def shell_sort(Lists):
-    pass
+
+    count = len(Lists)
+    step = 2
+    group = count // step
+    while group > 0:
+        for i in range(group, count):
+            j = i
+            key = Lists[j]
+            while j-group >= 0:
+                if Lists[j] <= Lists[j-group]:
+                    Lists[j] = Lists[j-group]
+                    Lists[j-group] = key
+                j -= group
+        group /= 2
+    return Lists
+
+print "=========="
+print shell_sort([1, 7, 5, 3, 2, 4, 8])
 
 
 # 快速排序
